@@ -2,6 +2,7 @@ package com.example.databindingexone
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding.activity = this@MainActivity
 
         setRcv()
-
+        setObserv()
 
     }
 
@@ -31,10 +32,22 @@ class MainActivity : AppCompatActivity() {
         binding.mainRcv.layoutManager = LinearLayoutManager(this)
         binding.mainRcv.adapter = profileAdapter
         profileAdapter.data = listOf(
-            ProfileData(name = "Kang", age = 26),
-            ProfileData(name = "Kim", age = 25)
+            ProfileData(profile = "이미지 url", name = "Kang", age = 26),
+            ProfileData(profile = "이미지 url", name = "Kim", age = 25)
         )
         profileAdapter.notifyDataSetChanged()
+    }
+
+    fun setObserv(){
+        var item : ObservableData = ObservableData()
+        item.site = "Naver"
+        binding.site = item
+
+        Handler().postDelayed(Runnable {
+            run {
+                item.site = "Google"
+            }
+        },3000)
     }
 
 }

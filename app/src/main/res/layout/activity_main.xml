@@ -2,40 +2,58 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
         <variable
             name="activity"
-            type="com.example.databindingexone.MainActivity" />
-    </data>
+            type="com.example.databindingexone.MainActivity"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <variable
+            name="site"
+            type="com.example.databindingexone.ObservableData" />
+
+
+    </data>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:fillViewport="true">
 
-        <Button
-            android:id="@+id/btnSample"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="317dp"
-            android:layout_marginBottom="683dp"
-            android:onClick="@{activity::btnClick}"
-            android:text="button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mainRcv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSample" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btnSample"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="button"
+                android:onClick="@{activity::btnClick}"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mainRcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <EditText
+                android:id="@+id/siteEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@={site.site}" />
+
+            <TextView
+                android:id="@+id/siteName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{site.site}"
+                tools:text="siteName"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 </layout>
